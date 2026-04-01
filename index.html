@@ -38,10 +38,31 @@
             ),
             url('1.jpg');
 
-            background-size: cover;
+            background-size: 100% auto;
             background-position: top center;
             background-repeat: no-repeat;
-            height: 320px;
+
+            height: 360px;
+        }
+
+        /* 🔥 ANIMAÇÃO DO BOTÃO */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0px rgba(249, 115, 22, 0.7);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(249, 115, 22, 0.9);
+                transform: scale(1.03);
+            }
+            100% {
+                box-shadow: 0 0 0px rgba(249, 115, 22, 0.7);
+                transform: scale(1);
+            }
+        }
+
+        .pulse-button {
+            animation: pulseGlow 1.5s infinite;
         }
     </style>
 </head>
@@ -68,11 +89,11 @@
         </div>
     </div>
 
-    <!-- BOTÃO -->
+    <!-- BOTÃO COM ANIMAÇÃO -->
     <a href="SEU_LINK_AQUI" 
        target="_blank"
        onclick="dispararPixel()"
-       class="w-full max-w-md mt-6 bg-orange-500 hover:bg-orange-600 text-black font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-orange-500/20">
+       class="pulse-button w-full max-w-md mt-6 bg-orange-500 hover:bg-orange-600 text-black font-black py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform active:scale-95">
         ENTRAR NA COMUNIDADE
         <i class="fas fa-check-circle text-lg"></i>
     </a>
