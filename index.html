@@ -20,8 +20,8 @@
       fbq('track', 'PageView');                                                                                                                                                            
                                               
       async function trackLead() {                                                                                                                                                         
-        const eventId = 'Lead_' + Date.now();                                                                                                                                            
-        fbq('track', 'Lead', {}, { eventID: eventId });                                                                                                                                    
+        const eventId = 'CompleteRegistration' + Date.now();                                                                                                                                            
+        fbq('track', 'CompleteRegistration', {}, { eventID: eventId });                                                                                                                                    
                                                                                                                                                                                          
         await fetch('https://ramon-comunidade.vercel.app/api/lead', {                                                                                                                      
           method: 'POST',                                                                                                                                                                  
