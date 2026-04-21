@@ -1,316 +1,317 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parabéns - Cap Mago</title>
-    
-    <!-- Pixel do Facebook -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1334728107861230');
-        fbq('init', '953058917590545');
-    fbq('track', 'PageView');
+  <!DOCTYPE html>
+  <html lang="pt-BR">                         
+  <head>                                  
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                               
+      <title>Parabéns - Cap Mago</title>      
+                                                                                                                                                                                           
+      <!-- Pixel do Facebook -->                                                                                                                                                         
+      <script>                                                                                                                                                                             
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                                                                                                                                    
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};                                                                                                                          
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';                                                                                                                            
+      n.queue=[];t=b.createElement(e);t.async=!0;                                                                                                                                        
+      t.src=v;s=b.getElementsByTagName(e)[0];                                                                                                                                              
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');                                                                                                                                   
+      fbq('init', '1334728107861230');                                                                                                                                                   
+      fbq('init', '953058917590545');                                                                                                                                                      
+      fbq('track', 'PageView');                                                                                                                                                            
+                                              
+      async function trackLead() {                                                                                                                                                         
+        const eventId = 'Lead_' + Date.now();                                                                                                                                            
+        fbq('track', 'Lead', {}, { eventID: eventId });                                                                                                                                    
+                                                                                                                                                                                         
+        await fetch('https://ramon-comunidade.vercel.app/api/lead', {                                                                                                                      
+          method: 'POST',                                                                                                                                                                  
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({                                                                                                                                                           
+            fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,                                                                                                                     
+            fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,                                                                                                                       
+            userAgent: navigator.userAgent,                                                                                                                                              
+            eventId: eventId                                                                                                                                                               
+          })                                                                                                                                                                               
+        });                                                                                                                                                                                
+      }                                                                                                                                                                                    
+      </script>                                                                                                                                                                          
+      <noscript><img height="1" width="1" style="display:none"                                                                                                                             
+      src="https://www.facebook.com/tr?id=1334728107861230&ev=PageView&noscript=1"                                                                                                       
+      /></noscript>                       
+      <!-- Fim Pixel do Facebook -->
+                                                                                                                                                                                           
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>                                                                                                                 
+      <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">                                                           
+      <style>                                 
+          :root {                                                                                                                                                                          
+              --primary-orange: #FF8C00;                                                                                                                                                   
+              --hover-orange: #E67E00;                                                                                                                                                     
+              --bg-dark: #000000;                                                                                                                                                          
+              --text-white: #ffffff;                                                                                                                                                       
+              --text-gray: #9a9a9a;                                                                                                                                                        
+              --border-gray: #333333;     
+              --alert-bg: rgba(42, 26, 26, 0.9);                                                                                                                                           
+              --alert-border: #8B4513;                                                                                                                                                     
+          }                                   
+                                                                                                                                                                                           
+          * {                                                                                                                                                                              
+              margin: 0;                                                                                                                                                                   
+              padding: 0;                                                                                                                                                                  
+              box-sizing: border-box;                                                                                                                                                      
+              font-family: "Saira", sans-serif;                                                                                                                                          
+          }                                   
+                                          
+          body, html {
+              background-color: var(--bg-dark);                                                                                                                                            
+              color: var(--text-white);
+              overflow-x: hidden;                                                                                                                                                          
+              min-height: 100vh;                                                                                                                                                         
+          }                                   
+                                          
+          .main-container {
+              position: relative;                                                                                                                                                          
+              width: 100%;
+              min-height: 100vh;                                                                                                                                                           
+              display: flex;                                                                                                                                                             
+              flex-direction: column;
+          }
+                                              
+          .bg-wrapper {                   
+              position: absolute;
+              top: 0;                                                                                                                                                                      
+              left: 0;
+              width: 100%;                                                                                                                                                                 
+              height: 100%;                                                                                                                                                              
+              z-index: 1;
+          }                                   
+                                          
+          .bg-image {
+              width: 100%;                                                                                                                                                                 
+              height: 100%;
+              object-fit: cover;                                                                                                                                                           
+              object-position: top center;                                                                                                                                               
+              display: block;                 
+          }                               
 
-    function trackLead() {
-        fbq('track', 'Lead');
-    }
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1334728107861230&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- Fim Pixel do Facebook -->
+          .bg-desktop {                                                                                                                                                                    
+              display: none;
+          }                                                                                                                                                                                
+                                                                                                                                                                                         
+          .content {
+              position: relative;
+              z-index: 10;                    
+              width: 100%;                
+              max-width: 550px;
+              margin: 0 auto;                                                                                                                                                              
+              padding: 250px 20px 40px;
+              text-align: center;                                                                                                                                                          
+          }                                                                                                                                                                              
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-orange: #FF8C00;
-            --hover-orange: #E67E00;
-            --bg-dark: #000000;
-            --text-white: #ffffff;
-            --text-gray: #9a9a9a;
-            --border-gray: #333333;
-            --alert-bg: rgba(42, 26, 26, 0.9);
-            --alert-border: #8B4513;
-        }
+          @media (min-width: 768px) {                                                                                                                                                      
+              .bg-desktop {               
+                  display: block;                                                                                                                                                          
+              }                                                                                                                                                                            
+              .bg-mobile {
+                  display: none;                                                                                                                                                           
+              }                                                                                                                                                                          
+              .main-container {
+                  justify-content: center;    
+                  align-items: flex-start;
+                  padding-left: 10%;
+              }                                                                                                                                                                            
+              .content {                  
+                  margin: 0;                                                                                                                                                               
+                  text-align: left;                                                                                                                                                        
+                  padding: 0;
+              }                                                                                                                                                                            
+          }                                                                                                                                                                              
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Saira", sans-serif;
-        }
+          @media (max-width: 767px) {                                                                                                                                                      
+              .bg-image {
+                  height: 450px;                                                                                                                                                           
+                  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);                                                                                                   
+                  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+              }
+              .content {                                                                                                                                                                   
+                  padding-top: 220px;
+              }                                                                                                                                                                            
+          }                                                                                                                                                                              
 
-        body, html {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+          h1 {                                                                                                                                                                             
+              color: var(--primary-orange);
+              font-size: clamp(2.2rem, 10vw, 3.75rem);                                                                                                                                     
+              font-weight: 800;                                                                                                                                                          
+              font-style: italic;         
+              margin-bottom: 4px;
+              line-height: 1;                                                                                                                                                              
+              text-transform: uppercase;
+              text-shadow: 0 2px 15px rgba(0,0,0,0.8);                                                                                                                                     
+          }                                                                                                                                                                              
+                                          
+          .subtitle {
+              color: var(--text-white);                                                                                                                                                    
+              font-size: clamp(1.1rem, 5vw, 1.875rem);
+              font-weight: 400;                                                                                                                                                            
+              margin-bottom: 24px;                                                                                                                                                       
+              line-height: 1.2;           
+              text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+          }                                                                                                                                                                                
+   
+          .info-box {                                                                                                                                                                      
+              background-color: rgba(26, 26, 26, 0.95);                                                                                                                                  
+              border: 1px solid #333;
+              border-radius: 12px;                                                                                                                                                         
+              padding: 20px;
+              margin-bottom: 16px;                                                                                                                                                         
+              display: flex;                                                                                                                                                             
+              align-items: flex-start;    
+              gap: 12px;
+              text-align: left;                                                                                                                                                            
+              box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+          }                                                                                                                                                                                
+                                                                                                                                                                                         
+          .info-box span {                
+              color: var(--primary-orange);
+              font-weight: bold;                                                                                                                                                           
+              font-size: 1.2rem;
+              flex-shrink: 0;                                                                                                                                                              
+          }                                                                                                                                                                              
 
-        .main-container {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+          .info-box p {
+              color: var(--text-white);
+              font-size: 1rem;                
+              line-height: 1.4;           
+          }
+                                                                                                                                                                                           
+          .cta-button {
+              display: inline-flex;                                                                                                                                                        
+              align-items: center;                                                                                                                                                       
+              justify-content: center;
+              gap: 10px;                      
+              background-color: var(--primary-orange);
+              color: #000;
+              text-decoration: none;                                                                                                                                                       
+              font-weight: 800;
+              font-size: 1.1rem;                                                                                                                                                           
+              padding: 18px 32px;                                                                                                                                                        
+              border-radius: 12px;            
+              width: 100%;                
+              margin-bottom: 16px;
+              transition: all 0.3s ease;                                                                                                                                                   
+              animation: pulse 2s infinite;
+          }                                                                                                                                                                                
+                                                                                                                                                                                         
+          @media (min-width: 768px) {         
+              .cta-button {               
+                  width: auto;
+              }                                                                                                                                                                            
+          }
+                                                                                                                                                                                           
+          .cta-button:hover {                                                                                                                                                            
+              background-color: var(--hover-orange);
+              animation: none;
+              transform: scale(1.02);
+          }                                   
+                                          
+          .cta-button svg {
+              width: 22px;                                                                                                                                                                 
+              height: 22px;
+          }                                                                                                                                                                                
+                                                                                                                                                                                         
+          .alert-box {
+              background-color: rgba(42, 26, 26, 0.95);
+              border: 1px solid var(--alert-border);
+              border-radius: 12px;        
+              padding: 20px;
+              margin-bottom: 24px;                                                                                                                                                         
+              display: flex;
+              align-items: flex-start;                                                                                                                                                     
+              gap: 12px;                                                                                                                                                                 
+              text-align: left;               
+              box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+          }
+                                                                                                                                                                                           
+          .alert-box p {
+              color: var(--text-white);                                                                                                                                                    
+              font-size: 0.9rem;                                                                                                                                                         
+              line-height: 1.4;               
+          }                               
 
-        /* Background Wrapper */
-        .bg-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+          .footer-text {                                                                                                                                                                   
+              color: var(--text-gray);
+              font-size: 0.9rem;                                                                                                                                                           
+              line-height: 1.5;                                                                                                                                                          
+              margin-bottom: 24px;
+          }                                   
+                                          
+          .logo {
+              max-width: 180px;                                                                                                                                                            
+              height: auto;
+              margin: 0 auto;                                                                                                                                                              
+              display: block;                                                                                                                                                            
+          }
 
-        .bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            display: block;
-        }
+          @media (min-width: 768px) {         
+              .logo {                     
+                  margin: 0;
+              }                                                                                                                                                                            
+          }
+                                                                                                                                                                                           
+          @keyframes pulse {                                                                                                                                                             
+              0% { transform: scale(1); }
+              50% { transform: scale(1.03); }
+              100% { transform: scale(1); }
+          }                                   
+                                          
+          .icon-warning {
+              color: #FFD700;                                                                                                                                                              
+              flex-shrink: 0;
+          }                                                                                                                                                                                
+      </style>                                                                                                                                                                           
+  </head>
+  <body>
+      <div class="main-container">
+          <div class="bg-wrapper">
+              <img src="bg-desktop.jpg" alt="Background Desktop" class="bg-image bg-desktop">
+              <img src="bg-mobile.jpg" alt="Background Mobile" class="bg-image bg-mobile">
+          </div>
+                                                                                                                                                                                           
+          <div class="content">           
+              <h1>PARABÉNS!</h1>                                                                                                                                                           
+              <p class="subtitle">Atenção para garantir seu bilhete!</p>                                                                                                                   
+   
+              <div class="info-box">                                                                                                                                                       
+                  <span>*</span>                                                                                                                                                         
+                  <p>Entre agora na comunidade <span style="color: #FFD700; font-weight: bold;">E AGUARDE</span>, em breve vou mandar as melhores oportunidades para forrarmos juntos!</p>
+              </div>                      
+                                              
+              <a href="https://ramomcmd.redirecionar.online/" class="cta-button" onclick="trackLead()">                                                                                    
+                  ENTRAR NA COMUNIDADE
+                  <svg viewBox="0 0 24 24" fill="currentColor">                                                                                                                            
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>                                  
+                  </svg>                                                                                                                                                                   
+              </a>                                                                                                                                                                       
 
-        .bg-desktop {
-            display: none;
-        }
-
-        /* Content Overlay */
-        .content {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 550px;
-            margin: 0 auto;
-            padding: 250px 20px 40px; /* Espaço no topo para a imagem aparecer no mobile */
-            text-align: center;
-        }
-
-        /* Ajustes Desktop */
-        @media (min-width: 768px) {
-            .bg-desktop {
-                display: block;
-            }
-            .bg-mobile {
-                display: none;
-            }
-            .main-container {
-                justify-content: center;
-                align-items: flex-start;
-                padding-left: 10%;
-            }
-            .content {
-                margin: 0;
-                text-align: left;
-                padding: 0;
-            }
-        }
-
-        /* Mobile Specific Adjustments */
-        @media (max-width: 767px) {
-            .bg-image {
-                height: 450px; /* Limita a altura da imagem no mobile */
-                mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            }
-            .content {
-                padding-top: 220px; /* Posiciona o texto exatamente sobre a parte de baixo da imagem */
-            }
-        }
-
-        h1 {
-            color: var(--primary-orange);
-            font-size: clamp(2.2rem, 10vw, 3.75rem);
-            font-weight: 800;
-            font-style: italic;
-            margin-bottom: 4px;
-            line-height: 1;
-            text-transform: uppercase;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.8);
-        }
-
-        .subtitle {
-            color: var(--text-white);
-            font-size: clamp(1.1rem, 5vw, 1.875rem);
-            font-weight: 400;
-            margin-bottom: 24px;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-
-        /* Info Box */
-        .info-box {
-            background-color: rgba(26, 26, 26, 0.95);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .info-box span {
-            color: var(--primary-orange);
-            font-weight: bold;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .info-box p {
-            color: var(--text-white);
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: var(--primary-orange);
-            color: #000;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1rem;
-            padding: 18px 32px;
-            border-radius: 12px;
-            width: 100%;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        @media (min-width: 768px) {
-            .cta-button {
-                width: auto;
-            }
-        }
-
-        .cta-button:hover {
-            background-color: var(--hover-orange);
-            animation: none;
-            transform: scale(1.02);
-        }
-
-        .cta-button svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        /* Alert Box */
-        .alert-box {
-            background-color: rgba(42, 26, 26, 0.95);
-            border: 1px solid var(--alert-border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .alert-box p {
-            color: var(--text-white);
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        /* Footer Text */
-        .footer-text {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        /* Logo */
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin: 0 auto;
-            display: block;
-        }
-
-        @media (min-width: 768px) {
-            .logo {
-                margin: 0;
-            }
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        .icon-warning {
-            color: #FFD700;
-            flex-shrink: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="main-container">
-        <!-- Background Wrapper -->
-        <div class="bg-wrapper">
-            <img src="bg-desktop.jpg" alt="Background Desktop" class="bg-image bg-desktop">
-            <img src="bg-mobile.jpg" alt="Background Mobile" class="bg-image bg-mobile">
-        </div>
-
-        <!-- Content -->
-        <div class="content">
-            <h1>PARABÉNS!</h1>
-            <p class="subtitle">Atenção para garantir seu bilhete!</p>
-
-            <div class="info-box">
-                <span>*</span>
-                <p>Entre agora na comunidade <span style="color: #FFD700; font-weight: bold;">E AGUARDE</span>, em breve vou mandar as melhores oportunidades para forrarmos juntos!</p>
-            </div>
-
-            <a href="https://ramomcmd.redirecionar.online/" class="cta-button" onclick="trackLead()">
-                ENTRAR NA COMUNIDADE
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-            </a>
-
-            <div class="alert-box">
-                <div class="icon-warning">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                        <line x1="12" y1="9" x2="12" y2="13"></line>
-                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                </div>
-                <p>AVISO: O link de acesso é único. Se você sair agora, o bot identificará a vaga como abandonada e você será bloqueado permanentemente de todas as nossas futuras entradas gratuitas.</p>
-            </div>
-
-            <p class="footer-text">
-                Mais de 80 mil pessoas já estão nas comunidades.<br>
-                Conteúdos diários, gestão e disciplina
-            </p>
-
-            <img src="logo.png" alt="MagTips Ramon Martins" class="logo">
-        </div>
-    </div>
-</body>
-</html>
+              <div class="alert-box">                                                                                                                                                      
+                  <div class="icon-warning">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">                   
+                          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>                                                     
+                          <line x1="12" y1="9" x2="12" y2="13"></line>
+                          <line x1="12" y1="17" x2="12.01" y2="17"></line>                                                                                                                 
+                      </svg>                  
+                  </div>                                                                                                                                                                   
+                  <p>AVISO: O link de acesso é único. Se você sair agora, o bot identificará a vaga como abandonada e você será bloqueado permanentemente de todas as nossas futuras     
+  entradas gratuitas.</p>                                                                                                                                                                  
+              </div>                                                                                                                                                                     
+                                                                                                                                                                                           
+              <p class="footer-text">                                                                                                                                                      
+                  Mais de 80 mil pessoas já estão nas comunidades.<br>
+                  Conteúdos diários, gestão e disciplina                                                                                                                                   
+              </p>                                                                                                                                                                       
+                                              
+              <img src="logo.png" alt="MagTips Ramon Martins" class="logo">
+          </div>
+      </div>                                                                                                                                                                               
+  </body>
+  </html>
