@@ -15,15 +15,14 @@
       t.src=v;s=b.getElementsByTagName(e)[0];                                                                                                                                              
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');                                                                                                                                                                                                                                                                                      
-      fbq('init', '1334728107861230');
-        fbq('init', '953058917590545');
+      fbq('init', '953058917590545');
       fbq('track', 'PageView');                                                                                                                                                            
                                               
       async function trackLead() {                                                                                                                                                         
         const eventId = 'CompleteRegistration' + Date.now();                                                                                                                                            
         fbq('track', 'CompleteRegistration', {}, { eventID: eventId });                                                                                                                                    
                                                                                                                                                                                          
-        await fetch('https://ramon-comunidade.vercel.app/api/lead', {                                                                                                                      
+        await fetch('https://api-ramon-production.up.railway.app/api/lead', {                                                                                                                      
           method: 'POST',                                                                                                                                                                  
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({                                                                                                                                                           
