@@ -1,309 +1,569 @@
-<!DOCTYPE html>                                                                                                                                                              
-  <html lang="pt-BR">                                               
-  <head>                                                                                                                                                                       
-      <meta charset="UTF-8">                                                                                                                                                   
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                   
-      <title>Parabéns - Cap Mago</title>                                                                                                                                       
-                                                                                                                                                                               
-      <!-- Pixel do Facebook -->                                                                                                                                               
-      <script>                                                                                                                                                               
-      !function(f,b,e,v,n,t,s)                                                                                                                                                 
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                                                                                                                      
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};                                                                                                                
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;                                                                                                                              
-      t.src=v;s=b.getElementsByTagName(e)[0];                                                                                                                                
-      s.parentNode.insertBefore(t,s)}(window, document,'script',                                                                                                               
-      'https://connect.facebook.net/en_US/fbevents.js');                                                                                                                     
-      fbq('init', '953058917590545');                                                                                                                                          
-      fbq('track', 'PageView');                                                                                                                                                
-   
-      async function trackLead(e) {                                                                                                                                            
-        e.preventDefault();                                                                                                                                                  
-        const eventId = 'cr_' + Date.now();                                                                                                                                    
-                                                                                                                                                                               
-        fbq('track', 'CompleteRegistration', {}, { eventID: eventId });
-                                                                                                                                                                               
-        try {                                                                                                                                                                  
-          await fetch('https://api-ramon-production.up.railway.app/api/lead', {
-            method: 'POST',                                                                                                                                                    
-            headers: { 'Content-Type': 'application/json' },                                                                                                                 
-            body: JSON.stringify({                                                                                                                                             
-              fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,                                                                                                       
-              fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,                                                                                                         
-              userAgent: navigator.userAgent,
-              eventId: eventId                                                                                                                                                 
-            })                                                                                                                                                               
-          });                                                                                                                                                                  
-        } catch(err) {}                                                                                                                                                      
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parabéns - Cap Mago</title>
 
-        window.location.href = 'https://ramomcmd.redirecionar.online/';                                                                                                        
-      }
-      </script>                                                                                                                                                                
-      <noscript><img height="1" width="1" style="display:none"                                                                                                               
-      src="https://www.facebook.com/tr?id=953058917590545&ev=PageView&noscript=1"                                                                                              
-      /></noscript>
-      <!-- Fim Pixel do Facebook -->                                                                                                                                           
-                                                                                                                                                                               
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>                                                                                                     
-      <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">                                               
-      <style>                                                                                                                                                                  
-          :root {                                                                                                                                                              
-              --primary-orange: #FF8C00;                                                                                                                                       
-              --hover-orange: #E67E00;                                                                                                                                         
-              --bg-dark: #000000;
-              --text-white: #ffffff;                                                                                                                                           
-              --text-gray: #9a9a9a;                                                                                                                                          
-              --border-gray: #333333;                                                                                                                                          
-              --alert-bg: rgba(42, 26, 26, 0.9);                                                                                                                               
-              --alert-border: #8B4513;                                                                                                                                         
-          }                                                                                                                                                                    
-                                                                                                                                                                               
-          * {                                                                                                                                                                
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;                                                                                                                                          
-              font-family: "Saira", sans-serif;
-          }                                                                                                                                                                    
-                                                                                                                                                                             
-          body, html {
-              background-color: var(--bg-dark);
-              color: var(--text-white);                                                                                                                                        
-              overflow-x: hidden;
-              min-height: 100vh;                                                                                                                                               
-          }                                                                                                                                                                  
+  <!-- Pixel do Facebook -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '953058917590545');
+  fbq('track', 'PageView');
 
-          .main-container {
-              position: relative;
-              width: 100%;                                                                                                                                                     
-              min-height: 100vh;
-              display: flex;                                                                                                                                                   
-              flex-direction: column;                                                                                                                                        
-          }
+  async function trackLead(e) {
+    e.preventDefault();
+    const eventId = 'cr_' + Date.now();
+    fbq('track', 'CompleteRegistration', {}, { eventID: eventId });
+    try {
+      await fetch('https://api-ramon-production.up.railway.app/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+          fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+          userAgent: navigator.userAgent,
+          eventId: eventId
+        })
+      });
+    } catch(err) {}
+    window.location.href = 'https://ramomcmd.redirecionar.online/';
+  }
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=953058917590545&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- Fim Pixel do Facebook -->
 
-          .bg-wrapper {
-              position: absolute;
-              top: 0;                                                                                                                                                          
-              left: 0;
-              width: 100%;                                                                                                                                                     
-              height: 100%;                                                                                                                                                  
-              z-index: 1;
-          }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 
-          .bg-image {
-              width: 100%;
-              height: 100%;                                                                                                                                                    
-              object-fit: cover;
-              object-position: top center;                                                                                                                                     
-              display: block;                                                                                                                                                
-          }                                                                                                                                                                    
-   
-          .bg-desktop { display: none; }                                                                                                                                       
-                                                                                                                                                                             
-          .content {
-              position: relative;
-              z-index: 10;
-              width: 100%;                                                                                                                                                     
-              max-width: 550px;
-              margin: 0 auto;                                                                                                                                                  
-              padding: 250px 20px 40px;                                                                                                                                      
-              text-align: center;                                                                                                                                              
-          }
-                                                                                                                                                                               
-          @media (min-width: 768px) {                                                                                                                                        
-              .bg-desktop { display: block; }
-              .bg-mobile { display: none; }                                                                                                                                    
-              .main-container {
-                  justify-content: center;                                                                                                                                     
-                  align-items: flex-start;                                                                                                                                   
-                  padding-left: 10%;                                                                                                                                           
-              }                                                                                                                                                                
-              .content {
-                  margin: 0;                                                                                                                                                   
-                  text-align: left;                                                                                                                                          
-                  padding: 0;
-              }                                                                                                                                                                
-          }
-                                                                                                                                                                               
-          @media (max-width: 767px) {                                                                                                                                        
-              .bg-image {
-                  height: 450px;
-                  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-                  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);                                                                                 
-              }                                                                                                                                                                
-              .content { padding-top: 220px; }                                                                                                                                 
-          }                                                                                                                                                                    
-                                                                                                                                                                               
-          h1 {
-              color: var(--primary-orange);                                                                                                                                    
-              font-size: clamp(2.2rem, 10vw, 3.75rem);                                                                                                                       
-              font-weight: 800;                                                                                                                                                
-              font-style: italic;
-              margin-bottom: 4px;                                                                                                                                              
-              line-height: 1;                                                                                                                                                  
-              text-transform: uppercase;
-              text-shadow: 0 2px 15px rgba(0,0,0,0.8);                                                                                                                         
-          }                                                                                                                                                                    
-   
-          .subtitle {                                                                                                                                                          
-              color: var(--text-white);                                                                                                                                      
-              font-size: clamp(1.1rem, 5vw, 1.875rem);
-              font-weight: 400;                                                                                                                                                
-              margin-bottom: 24px;
-              line-height: 1.2;                                                                                                                                                
-              text-shadow: 0 2px 10px rgba(0,0,0,0.8);                                                                                                                       
-          }                                                                                                                                                                    
-   
-          .info-box {                                                                                                                                                          
-              background-color: rgba(26, 26, 26, 0.95);                                                                                                                      
-              border: 1px solid #333;                                                                                                                                          
-              border-radius: 12px;
-              padding: 20px;                                                                                                                                                   
-              margin-bottom: 16px;                                                                                                                                             
-              display: flex;
-              align-items: flex-start;                                                                                                                                         
-              gap: 12px;                                                                                                                                                     
-              text-align: left;                                                                                                                                                
-              box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-          }                                                                                                                                                                    
-                                                                                                                                                                             
-          .info-box span {                                                                                                                                                     
-              color: var(--primary-orange);
-              font-weight: bold;                                                                                                                                               
-              font-size: 1.2rem;                                                                                                                                             
-              flex-shrink: 0;
-          }                                                                                                                                                                    
-   
-          .info-box p {                                                                                                                                                        
-              color: var(--text-white);                                                                                                                                      
-              font-size: 1rem;
-              line-height: 1.4;
-          }                                                                                                                                                                    
-   
-          .cta-button {                                                                                                                                                        
-              display: inline-flex;                                                                                                                                          
-              align-items: center;
-              justify-content: center;
-              gap: 10px;
-              background-color: var(--primary-orange);                                                                                                                         
-              color: #000;
-              text-decoration: none;                                                                                                                                           
-              font-weight: 800;                                                                                                                                              
-              font-size: 1.1rem;                                                                                                                                               
-              padding: 18px 32px;
-              border-radius: 12px;                                                                                                                                             
-              width: 100%;                                                                                                                                                   
-              margin-bottom: 16px;                                                                                                                                             
-              transition: all 0.3s ease;
-              animation: pulse 2s infinite;                                                                                                                                    
-              cursor: pointer;                                                                                                                                                 
-          }
-                                                                                                                                                                               
-          @media (min-width: 768px) {                                                                                                                                        
-              .cta-button { width: auto; }
-          }                                                                                                                                                                    
-   
-          .cta-button:hover {                                                                                                                                                  
-              background-color: var(--hover-orange);                                                                                                                         
-              animation: none;                                                                                                                                                 
-              transform: scale(1.02);
-          }                                                                                                                                                                    
-                                                                                                                                                                             
-          .cta-button svg { width: 22px; height: 22px; }                                                                                                                       
-   
-          .alert-box {                                                                                                                                                         
-              background-color: rgba(42, 26, 26, 0.95);                                                                                                                      
-              border: 1px solid var(--alert-border);                                                                                                                           
-              border-radius: 12px;
-              padding: 20px;                                                                                                                                                   
-              margin-bottom: 24px;                                                                                                                                           
-              display: flex;
-              align-items: flex-start;                                                                                                                                         
-              gap: 12px;
-              text-align: left;                                                                                                                                                
-              box-shadow: 0 4px 20px rgba(0,0,0,0.5);                                                                                                                        
-          }
-                                                                                                                                                                               
-          .alert-box p {
-              color: var(--text-white);                                                                                                                                        
-              font-size: 0.9rem;                                                                                                                                             
-              line-height: 1.4;
-          }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-          .footer-text {                                                                                                                                                       
-              color: var(--text-gray);
-              font-size: 0.9rem;                                                                                                                                               
-              line-height: 1.5;                                                                                                                                              
-              margin-bottom: 24px;
-          }
-                                                                                                                                                                               
-          .logo {
-              max-width: 180px;                                                                                                                                                
-              height: auto;                                                                                                                                                  
-              margin: 0 auto;
-              display: block;
-          }
-                                                                                                                                                                               
-          @media (min-width: 768px) {
-              .logo { margin: 0; }                                                                                                                                             
-          }                                                                                                                                                                  
+    :root {
+      --orange: #FF8C00;
+      --orange-dim: rgba(255,140,0,0.15);
+      --orange-border: rgba(255,140,0,0.35);
+      --green: #22c55e;
+      --green-dim: rgba(34,197,94,0.12);
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --line: #1e1e1e;
+      --text: #ffffff;
+      --muted: #888888;
+      --faint: #333333;
+    }
 
-          @keyframes pulse {
-              0% { transform: scale(1); }
-              50% { transform: scale(1.03); }
-              100% { transform: scale(1); }                                                                                                                                    
-          }
-                                                                                                                                                                               
-          .icon-warning {                                                                                                                                                    
-              color: #FFD700;
-              flex-shrink: 0;
-          }
-      </style>
-  </head>                                                                                                                                                                      
-  <body>
-      <div class="main-container">                                                                                                                                             
-          <div class="bg-wrapper">                                                                                                                                           
-              <img src="bg-desktop.jpg" alt="Background Desktop" class="bg-image bg-desktop">
-              <img src="bg-mobile.jpg" alt="Background Mobile" class="bg-image bg-mobile">                                                                                     
-          </div>
-                                                                                                                                                                               
-          <div class="content">                                                                                                                                              
-              <h1>PARABÉNS!</h1>
-              <p class="subtitle">Atenção para garantir seu bilhete!</p>
-                                                                                                                                                                               
-              <div class="info-box">
-                  <span>*</span>                                                                                                                                               
-                  <p>Entre agora na comunidade <span style="color: #FFD700; font-weight: bold;">E AGUARDE</span>, em breve vou mandar as melhores oportunidades para forrarmos
-  juntos!</p>                                                                                                                                                                  
-              </div>
-                                                                                                                                                                               
-              <a href="https://ramomcmd.redirecionar.online/" class="cta-button" onclick="trackLead(event)">                                                                   
-                  ENTRAR NA COMUNIDADE
-                  <svg viewBox="0 0 24 24" fill="currentColor">                                                                                                                
-                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>                                                     
-                  </svg>                                                                                                                                                       
-              </a>                                                                                                                                                             
-                                                                                                                                                                               
-              <div class="alert-box">                                                                                                                                        
-                  <div class="icon-warning">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">       
-                          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>                                           
-                          <line x1="12" y1="9" x2="12" y2="13"></line>                                                                                                         
-                          <line x1="12" y1="17" x2="12.01" y2="17"></line>                                                                                                     
-                      </svg>                                                                                                                                                   
-                  </div>                                                                                                                                                       
-                  <p>AVISO: O link de acesso é único. Se você sair agora, o bot identificará a vaga como abandonada e você será bloqueado permanentemente de todas as nossas 
-  futuras entradas gratuitas.</p>                                                                                                                                              
-              </div>
-                                                                                                                                                                               
-              <p class="footer-text">                                                                                                                                          
-                  Mais de 80 mil pessoas já estão nas comunidades.<br>
-                  Conteúdos diários, gestão e disciplina                                                                                                                       
-              </p>                                                                                                                                                           
+    body, html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Saira', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-              <img src="logo.png" alt="MagTips Ramon Martins" class="logo">                                                                                                    
-          </div>
-      </div>                                                                                                                                                                   
-  </body>                                                                                                                                                                    
-  </html>
+    .page {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot-green {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .topbar-live span {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .topbar-online {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      background: #141414;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 20px;
+      background: linear-gradient(0deg, #0a0a0a 35%, transparent 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+
+    .hero-badge span {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(1.6rem, 7vw, 2.2rem);
+      font-weight: 800;
+      font-style: italic;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .hero-title em {
+      color: var(--orange);
+      font-style: italic;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 14px 14px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* GREENS CARD */
+    .greens-card {
+      background: #0a150a;
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .greens-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 11px;
+    }
+
+    .greens-header span {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .green-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-top: 0.5px solid #0f2010;
+    }
+
+    .green-row:first-child { border-top: none; }
+
+    .green-game { color: #ccc; font-size: 13px; }
+
+    .badge-green {
+      background: var(--green-dim);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    /* TIMER CARD */
+    .timer-card {
+      background: var(--bg2);
+      border: 1px solid var(--orange-border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .timer-label {
+      color: rgba(255,140,0,0.5);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .timer-digits {
+      color: var(--orange);
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-wrap {
+      height: 3px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 10px 0 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 2px;
+      transition: width 1s linear;
+    }
+
+    .timer-hint {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* WHAT YOU GET */
+    .steps-card {
+      background: var(--bg2);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .step {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      margin-bottom: 11px;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-num span {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .step p {
+      color: #bbb;
+      font-size: 13px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .step p strong { color: #fff; font-weight: 700; }
+
+    /* LIVE FEED */
+    .feed-card {
+      background: var(--bg2);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .feed-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-top: 0.5px solid var(--line);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feed-info { color: #999; font-size: 12px; }
+    .feed-info b { color: #ddd; font-weight: 600; }
+    .feed-win { color: var(--green); font-size: 13px; font-weight: 700; }
+
+    /* CTA */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: var(--orange);
+      border: none;
+      border-radius: 12px;
+      padding: 18px;
+      color: #000;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: 'Saira', sans-serif;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      animation: ctaPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0.4); }
+      50% { transform: scale(1.015); box-shadow: 0 0 0 8px rgba(255,140,0,0); }
+    }
+
+    .cta-btn:hover { animation: none; opacity: 0.92; transform: scale(1.01); }
+    .cta-btn:active { transform: scale(0.98); }
+
+    /* NOTIF */
+    .notif-box {
+      border: 0.5px solid var(--faint);
+      border-radius: 12px;
+      padding: 13px 15px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .notif-box svg { flex-shrink: 0; margin-top: 1px; }
+    .notif-box p { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 0; }
+
+    /* LOGO */
+    .logo-wrap {
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    .logo-wrap img {
+      max-width: 160px;
+      height: auto;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-live">
+      <div class="dot-green"></div>
+      <span>Canal ao vivo</span>
+    </div>
+    <span class="topbar-online" id="online-count">1.247 online agora</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <!-- Troque por: <img class="hero-img" src="bg-mobile.jpg" alt=""> -->
+    <div class="hero-img" style="background:linear-gradient(135deg,#141414,#1e1e1e); display:flex; align-items:center; justify-content:center;">
+      <div style="text-align:center;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <span style="color:#444;font-size:12px;letter-spacing:1px;">[ sua foto aqui ]</span>
+      </div>
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-badge"><span>✦ acesso exclusivo liberado</span></div>
+      <div class="hero-title">Bem-vindo ao grupo<br><em>que fatura de verdade</em></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- GREENS -->
+    <div class="greens-card">
+      <div class="greens-header">
+        <div class="dot-green"></div>
+        <span>Últimos resultados do canal</span>
+      </div>
+      <div class="green-row">
+        <span class="green-game">Arsenal × Everton — Over 2.5</span>
+        <span class="badge-green">✓ GREEN</span>
+      </div>
+      <div class="green-row">
+        <span class="green-game">Man City × Chelsea — Handicap</span>
+        <span class="badge-green">✓ GREEN</span>
+      </div>
+      <div class="green-row">
+        <span class="green-game">Liverpool × Tottenham — BTTS</span>
+        <span class="badge-green">✓ GREEN</span>
+      </div>
+    </div>
+
+    <!-- TIMER -->
+    <div class="timer-card">
+      <p class="timer-label">Próxima análise enviada em</p>
+      <div class="timer-digits" id="timer">01:47:33</div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progress-bar" style="width:35%;"></div>
+      </div>
+      <p class="timer-hint">Quem está no canal recebe primeiro — não feche essa página</p>
+    </div>
+
+    <!-- O QUE VAI RECEBER -->
+    <div class="steps-card">
+      <span class="card-label">O que você vai receber agora</span>
+      <div class="step">
+        <div class="step-num"><span>1</span></div>
+        <p><strong>Análise tática completa</strong> dos jogos de hoje com os mercados de maior valor</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>2</span></div>
+        <p><strong>Odd mínima sugerida</strong> para maximizar o retorno com gestão de banca</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>3</span></div>
+        <p><strong>Alerta em tempo real</strong> caso a odd mude antes do kickoff</p>
+      </div>
+    </div>
+
+    <!-- FEED AO VIVO -->
+    <div class="feed-card">
+      <span class="card-label">Membros faturando agora</span>
+      <div id="feed"></div>
+    </div>
+
+    <!-- CTA -->
+    <a class="cta-btn" href="https://ramomcmd.redirecionar.online/" onclick="trackLead(event)">
+      Entrar na comunidade ▲
+    </a>
+
+    <!-- NOTIF -->
+    <div class="notif-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" stroke-width="2">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <p>Ative as notificações assim que entrar. As análises chegam minutos antes dos jogos começarem — quem tem o sino ativado recebe primeiro.</p>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Cap Mago Ramon Martins">
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── TIMER ──────────────────────────────────────────────
+  let secs = 6453;
+  const total = 7200;
+  const timerEl = document.getElementById('timer');
+  const bar = document.getElementById('progress-bar');
+
+  setInterval(() => {
+    if (secs <= 0) secs = total;
+    secs--;
+    const h = String(Math.floor(secs / 3600)).padStart(2, '0');
+    const m = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
+    const s = String(secs % 60).padStart(2, '0');
+    timerEl.textContent = h + ':' + m + ':' + s;
+    bar.style.width = Math.round((1 - secs / total) * 100) + '%';
+  }, 1000);
+
+  // ── ONLINE COUNT ───────────────────────────────────────
+  const onlineEl = document.getElementById('online-count');
+  let base = 1247;
+  setInterval(() => {
+    base += Math.floor(Math.random() * 5) - 2;
+    if (base < 1100) base = 1100;
+    onlineEl.textContent = base.toLocaleString('pt-BR') + ' online agora';
+  }, 3000);
+
+  // ── LIVE FEED ──────────────────────────────────────────
+  const names = ['Carlos F.', 'Rodrigo M.', 'João P.', 'Thiago S.', 'Marcos L.', 'Adriano R.', 'Felipe T.', 'Bruno C.', 'Letícia A.', 'Diego V.'];
+  const wins = ['+ R$ 87', '+ R$ 124', '+ R$ 63', '+ R$ 210', '+ R$ 95', '+ R$ 148', '+ R$ 72', '+ R$ 310', '+ R$ 55', '+ R$ 175'];
+  const games = ['Arsenal × Everton', 'Man City × Chelsea', 'Liverpool × Spurs', 'Real × Barça', 'PSG × Lyon', 'Flamengo × Palmeiras', 'Santos × Corinthians', 'Juventus × Milan'];
+  const feedEl = document.getElementById('feed');
+
+  function addFeedEntry() {
+    const n = names[Math.floor(Math.random() * names.length)];
+    const w = wins[Math.floor(Math.random() * wins.length)];
+    const g = games[Math.floor(Math.random() * games.length)];
+    const row = document.createElement('div');
+    row.className = 'feed-row';
+    row.innerHTML = `<span class="feed-info"><b>${n}</b> via ${g}</span><span class="feed-win">${w}</span>`;
+    if (feedEl.children.length >= 4) feedEl.removeChild(feedEl.firstChild);
+    feedEl.appendChild(row);
+  }
+
+  addFeedEntry();
+  addFeedEntry();
+  addFeedEntry();
+  setInterval(addFeedEntry, 4500);
+</script>
+</body>
+</html>
